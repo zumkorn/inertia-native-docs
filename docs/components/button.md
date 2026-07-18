@@ -81,13 +81,6 @@ Hotwire.registerBridgeComponents([
 Until it is registered, `supported` stays false on the web side and only the
 fallback is rendered.
 
-::: warning Minimum SDK
-The Swift component requires **`hotwire-native-ios` 1.2.0 or newer**. In 1.2.0
-`BridgeComponent.delegate` became a weak optional; the component reaches its
-view controller through `delegate?.destination`, which does not compile against
-1.1.x.
-:::
-
 The component overrides `name` as `override nonisolated class var name`. The
 base declaration is `nonisolated`, so an app built with
 `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor` — the Xcode 26 default for new
