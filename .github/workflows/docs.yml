@@ -31,6 +31,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # The component registry is a submodule; pages embed its files
+          # directly, so the build fails without it.
+          submodules: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

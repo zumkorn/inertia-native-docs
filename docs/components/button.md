@@ -11,18 +11,26 @@ instead, so the same page still works in a regular browser.
 *Opening the page registers `Tap me` in the navigation bar; each tap is counted
 by the web page below it.*
 
-::: tip Copy the source
-Both halves live in the
+::: tip You copy it, you own it
+There is nothing to install. Both files below are the complete component — paste
+them into your app and change them however you like. They are shown straight
+from the
 [hotwire-bridge-components](https://github.com/zumkorn/hotwire-bridge-components/tree/main/registry/button)
-registry — `inertia/react.tsx` for the web and `native/ButtonComponent.swift`
-for iOS. Copy them into your app; you own them from then on.
+registry, so what you see here is what the registry holds.
 :::
 
 ## Web side
 
-Copy `registry/button/inertia/react.tsx` into your app, then use it as a
-component. It renders nothing when the native button is showing, and renders its
-children as the web fallback when it is not:
+Save this as `bridge/BridgeButton.tsx` in your app:
+
+::: code-group
+
+<<< @/../vendor/hotwire-bridge-components/registry/button/inertia/react.tsx [BridgeButton.tsx]
+
+:::
+
+Then use it as a component. It renders nothing when the native button is
+showing, and renders its children as the web fallback when it is not:
 
 ```jsx
 import { BridgeButton } from '@/bridge/BridgeButton'
@@ -53,8 +61,15 @@ Without `typescript` and a `tsconfig.json` they are not checked, only removed.
 
 ## iOS side
 
-Copy `registry/button/native/ButtonComponent.swift` into your app and register
-it at launch:
+Add this file to your Xcode project:
+
+::: code-group
+
+<<< @/../vendor/hotwire-bridge-components/registry/button/native/ButtonComponent.swift [ButtonComponent.swift]
+
+:::
+
+Then register it at launch, in `AppDelegate`:
 
 ```swift
 Hotwire.registerBridgeComponents([
