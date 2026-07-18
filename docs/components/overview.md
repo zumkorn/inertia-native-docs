@@ -1,8 +1,19 @@
-# Bridge components
+# Overview
 
-Bridge components let your web pages drive native UI — a submit button in the
-app bar, a native menu, and so on. They build on Hotwire Native's bridge, which
-this package re-implements on the web side as `window.HotwireNative.web`.
+Bridge components let your web pages drive native UI — a button in the
+navigation bar, a native menu, and so on. They build on Hotwire Native's bridge,
+which this package re-implements on the web side as `window.HotwireNative.web`.
+
+Each component has two halves that must agree:
+
+| Half | Where it lives | What it does |
+| --- | --- | --- |
+| Web | Your Inertia app | Registers the component and handles replies |
+| Native | Your iOS app | Draws the native UI and reports interaction back |
+
+If the native half is not registered, the web half stays inert and your ordinary
+web control is rendered instead. This is what makes the same page work in a
+regular browser.
 
 ## `useBridgeComponent`
 
@@ -36,11 +47,37 @@ function NativeMenu({ items, onSelect }) {
 - `send(event, data?, callback?)` returns a message id; native replies invoke
   the `callback`.
 
-## Building a form submit button
+## Callback lifetime
 
-`useBridgeComponent` is the building block for specific components. A common one
-is a native submit button wired to an Inertia form — implement it in your app on
-top of the primitive:
+`useBridgeComponent` removes every callback it registered when the component
+unmounts. It does **not** remove them when you re-register — so if you send
+`connect` again from an effect that re-runs, drop the previous callback first:
+
+```js
+useEffect(() => {
+  if (!supported) return
+  const id = send('connect', { title }, () => onTapRef.current?.())
+  return () => window.HotwireNative?.web?.removeCallback(id)
+}, [supported, title, send])
+```
+
+Without the cleanup, a changed prop leaves the old callback registered and every
+subsequent interaction is reported twice.
+
+## Ready-made components
+
+Rather than writing each component from scratch, you can copy one from the
+[hotwire-bridge-components](https://github.com/zumkorn/hotwire-bridge-components)
+registry. It ships both halves — the web component and its Swift counterpart —
+along with a contract describing the messages they exchange.
+
+The model is copy-paste, not a package: you own the source once it is in your
+app. See [Button](/components/button) for a worked example.
+
+## Building your own
+
+`useBridgeComponent` is the building block. A native submit button wired to an
+Inertia form looks like this:
 
 ```js
 // hooks/useBridgeForm.js
@@ -94,4 +131,4 @@ function NewResource() {
 ```
 
 The native app must register the matching bridge component (`form`, `menu`, …)
-for `supported` to be true. See the native setup guides.
+for `supported` to be true. See the [iOS guide](/native/ios).

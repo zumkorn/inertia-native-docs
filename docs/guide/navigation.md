@@ -31,4 +31,4 @@ inspect (Android) to read it.
 initHotwireNative({ debug: true })
 ```
 
-Next: [Bridge components](/guide/bridge-components).
+Next: [Bridge components](/components/overview).

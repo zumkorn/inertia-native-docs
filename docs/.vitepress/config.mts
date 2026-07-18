@@ -29,7 +29,13 @@ export default defineConfig({
           { text: 'Introduction', link: '/guide/introduction' },
           { text: 'Installation', link: '/guide/installation' },
           { text: 'Navigation', link: '/guide/navigation' },
-          { text: 'Bridge components', link: '/guide/bridge-components' },
+        ],
+      },
+      {
+        text: 'Bridge components',
+        items: [
+          { text: 'Overview', link: '/components/overview' },
+          { text: 'Button', link: '/components/button' },
         ],
       },
       {
