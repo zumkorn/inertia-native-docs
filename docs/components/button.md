@@ -6,6 +6,11 @@ title; iOS draws a `UIBarButtonItem`; every tap is relayed back to the web side.
 Outside of Hotwire Native nothing is registered and your own markup is rendered
 instead, so the same page still works in a regular browser.
 
+<video src="/media/button-ios.mp4" autoplay muted loop playsinline controls style="max-width: 320px; width: 100%; border-radius: 12px;"></video>
+
+*Opening the page registers `Tap me` in the navigation bar; each tap is counted
+by the web page below it.*
+
 ::: tip Copy the source
 Both halves live in the
 [hotwire-bridge-components](https://github.com/zumkorn/hotwire-bridge-components/tree/main/registry/button)
