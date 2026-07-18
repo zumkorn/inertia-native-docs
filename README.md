@@ -7,6 +7,27 @@ running Inertia.js apps inside Hotwire Native (iOS & Android).
 Built with [VitePress](https://vitepress.dev). Published to
 [inertia-native.dev](https://inertia-native.dev).
 
+## Component registry submodule
+
+Component pages embed their source straight from the
+[hotwire-bridge-components](https://github.com/zumkorn/hotwire-bridge-components)
+registry, vendored at `vendor/hotwire-bridge-components`. The build fails without
+it, so clone with submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/zumkorn/inertia-native-docs.git
+
+# already cloned?
+git submodule update --init
+```
+
+To show newer component sources, move the submodule up and commit the new
+pointer:
+
+```bash
+git submodule update --remote vendor/hotwire-bridge-components
+```
+
 ## Local development
 
 ```bash
