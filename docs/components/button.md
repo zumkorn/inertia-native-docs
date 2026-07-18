@@ -81,12 +81,6 @@ Hotwire.registerBridgeComponents([
 Until it is registered, `supported` stays false on the web side and only the
 fallback is rendered.
 
-The component overrides `name` as `override nonisolated class var name`. The
-base declaration is `nonisolated`, so an app built with
-`SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor` — the Xcode 26 default for new
-projects — rejects a plain `override class var name` as an actor-isolation
-mismatch.
-
 ## The contract
 
 Component name: `button`.
