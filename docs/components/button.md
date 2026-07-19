@@ -56,10 +56,6 @@ function Article({ onSave }) {
 | `onTap` | `() => void` | — | Called on every tap |
 | `children` | `ReactNode` | — | Web fallback, rendered only in a browser |
 
-The file is TypeScript. Vite compiles `.tsx` with no configuration change, even
-in a project that is otherwise plain `.jsx` — types are stripped by esbuild.
-Without `typescript` and a `tsconfig.json` they are not checked, only removed.
-
 ## iOS side
 
 Add this file to your Xcode project:
