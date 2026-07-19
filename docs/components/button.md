@@ -1,7 +1,8 @@
 # Button
 
 A button rendered in the **native navigation bar**. The web side registers a
-title; iOS draws a `UIBarButtonItem`; every tap is relayed back to the web side.
+title; iOS draws a `UIBarButtonItem` and Android a toolbar menu item; every tap
+is relayed back to the web side.
 
 Outside of Hotwire Native nothing is registered and your own markup is rendered
 instead, so the same page still works in a regular browser.
@@ -12,9 +13,9 @@ instead, so the same page still works in a regular browser.
 by the web page below it.*
 
 ::: tip You copy it, you own it
-There is nothing to install. Both files below are the complete component — paste
-them into your app and change them however you like. They are shown straight
-from the
+There is nothing to install. The files below are the complete component — paste
+the web one plus whichever platforms you ship into your app, and change them
+however you like. They are shown straight from the
 [hotwire-bridge-components](https://github.com/zumkorn/hotwire-bridge-components/tree/main/registry/button)
 registry, so what you see here is what the registry holds.
 :::
@@ -110,6 +111,31 @@ own.
 
 ## Android
 
-Not covered here yet. The registry ships a `ButtonComponent.kt`, but it has not
-been verified against a pinned Android SDK version — treat it as unversioned
-until it has.
+The Kotlin half adds an item to the destination's toolbar. Add this file to your
+project:
+
+::: code-group
+
+<<< @/../vendor/hotwire-bridge-components/registry/button/native/ButtonComponent.kt [ButtonComponent.kt]
+
+:::
+
+Then register it at launch, in your `Application`:
+
+```kotlin
+Hotwire.registerBridgeComponents(
+    BridgeComponentFactory("button", ::ButtonComponent),
+    // … your other components
+)
+```
+
+<video src="/media/button-android.mp4" autoplay muted loop playsinline controls style="max-width: 320px; width: 100%; border-radius: 12px;"></video>
+
+*The same page on Android. Toolbar menu items are upper-cased by the platform,
+so `Tap me` is drawn as `TAP ME`.*
+
+::: warning `side` is ignored
+Android toolbar menu items always sit at the end of the bar, so a `"left"`
+button still appears on the right. Treat `side` as a hint that iOS honours and
+Android cannot.
+:::
