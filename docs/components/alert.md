@@ -150,10 +150,3 @@ Android has no destructive button style, so `destructive` tints the positive
 button with the theme's `colorError` instead. It reads as a warning rather than
 as the platform-standard destructive action iOS gives you.
 :::
-
-## Credits
-
-The contract and both native halves follow
-[joemasilotti/bridge-components](https://github.com/joemasilotti/bridge-components)
-(MIT). An app already shipping that Swift or Kotlin component drives this web
-side unchanged.
