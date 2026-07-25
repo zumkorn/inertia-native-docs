@@ -145,6 +145,11 @@ Hotwire.registerBridgeComponents(
 )
 ```
 
+<video src="/media/alert-android.mp4" autoplay muted loop playsinline controls style="max-width: 320px; width: 100%; border-radius: 12px;"></video>
+
+*The same page on Android: dismissing with `Keep` leaves the page alone,
+confirming with `Delete` updates it.*
+
 ::: warning No destructive style
 Android has no destructive button style, so `destructive` tints the positive
 button with the theme's `colorError` instead. It reads as a warning rather than
