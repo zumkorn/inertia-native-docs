@@ -35,6 +35,7 @@ export default defineConfig({
         text: 'Bridge components',
         items: [
           { text: 'Overview', link: '/components/overview' },
+          { text: 'Alert', link: '/components/alert' },
           { text: 'Button', link: '/components/button' },
         ],
       },
